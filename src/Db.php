@@ -75,8 +75,7 @@ class Db
 			throw new Exception("Semicolons are not allowed in queryes. Use parameters instead.");
 
 		// Disallow update, insert etc. with this, they have to use execute
-		$contain = array("UPDATE", "INSERT");
-		if(Util::strposa($query, $contain))
+		if (strpos(trim(strtolower($query)), "select") !== 0) 
 			throw new Exception("You are not to use Db::query with update or insert queries. Use Db::execute for that");
 
 		// Cache time of 0 seconds means skip all caches. and just do the query
