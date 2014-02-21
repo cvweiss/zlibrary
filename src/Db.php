@@ -68,7 +68,7 @@ class Db
 	 */
 	public static function query($query, $parameters = array(), $cacheTime = 30)
 	{
-		global $dbExplain;
+		global $dbExplain, $newRelic;
 
 		// Sanity check
 		if(strpos($query, ";") !== false)
@@ -92,6 +92,18 @@ class Db
 
 		try
 		{
+			// New Relic
+			if($newRelic)
+			{
+				if (preg_match( '/^\s*(select)\s/i', $query))
+				{
+					if (preg_match("/\s+FROM\s+`?([a-z\d_]+)`?/i", $query, $match))
+					{
+						$segment = hhvm_newrelic_get_scoped_database_segment($match[1], "select");
+					}
+				}
+			}
+
 			// Start the timer
 			$timer = new Timer();
 			// Increment the queryCounter
