@@ -68,7 +68,7 @@ class Db
 	 */
 	public static function query($query, $parameters = array(), $cacheTime = 30)
 	{
-		global $dbExplain;
+		global $dbExplain, $newRelic;
 
 		// Sanity check
 		if(strpos($query, ";") !== false)
