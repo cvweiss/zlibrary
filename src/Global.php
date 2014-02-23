@@ -41,6 +41,6 @@ class Gloabl
 	public static function set($name, $value)
 	{
 		$key = "Global::$name";
-		Bin::set($name, $value);
+		Bin::set($key, $value);
 	}
 }
