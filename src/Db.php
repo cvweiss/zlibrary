@@ -68,11 +68,9 @@ class Db
 	 */
 	public static function query($query, $parameters = array(), $cacheTime = 30)
 	{
-		global $dbExplain;
-
 		// Sanity check
 		if(strpos($query, ";") !== false)
-			throw new Exception("Semicolons are not allowed in queryes. Use parameters instead.");
+			throw new Exception("Semicolons are not allowed in queries. Use parameters instead.");
 
 		// Disallow update, insert etc. with this, they have to use execute
 		if (strpos(trim(strtolower($query)), "select") !== 0) 
@@ -141,7 +139,7 @@ class Db
 	 * @param string $query The query to be executed
 	 * @param array $parameters (optional) A key/value array of parameters
 	 * @param int $cacheTime The time, in seconds, to cache the result of the query.	Default: 30
-	 * @return string|int|null Returns the first row of the result set. Returns null if there are no rows.
+	 * @return array Returns the first row of the result set. Returns an empty array if there are no rows.
 	 */
 	public static function queryRow($query, $parameters = array(), $cacheTime = 30)
 	{
@@ -152,7 +150,7 @@ class Db
 			return $result[0];
 
 		// No results at all
-		return null;
+		return array();
 	}
 
 	/**
@@ -163,7 +161,7 @@ class Db
 	 * @param string $field The name of the field to return
 	 * @param array $parameters (optional) A key/value array of parameters
 	 * @param int $cacheTime The time, in seconds, to cache the result of the query.	Default: 30
-	 * @return string|int|null Returns the value of $field in the first row of the resultset. Returns null if there are no results
+	 * @return mixed Returns the value of $field in the first row of the resultset. Returns null if there are no results
 	 */
 	public static function queryField($query, $field, $parameters = array(), $cacheTime = 30)
 	{
