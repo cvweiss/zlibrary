@@ -142,10 +142,10 @@ class Db
 	 * @param int $cacheTime The time, in seconds, to cache the result of the query.	Default: 30
 	 * @return array Returns the first row of the result set. Returns an empty array if there are no rows.
 	 */
-	public static function queryRow($query, $parameters = array(), $cacheTime = 30)
+	public static function queryRow($query, $parameters = array(), $cacheTime = 30, $selectCheck = true)
 	{
 		// Get the result
-		$result = self::query($query, $parameters, $cacheTime);
+		$result = self::query($query, $parameters, $cacheTime, $selectCheck);
 		// Figure out if it has more than one result and return it
 		if(sizeof($result) >= 1)
 			return $result[0];
@@ -164,10 +164,10 @@ class Db
 	 * @param int $cacheTime The time, in seconds, to cache the result of the query.	Default: 30
 	 * @return mixed Returns the value of $field in the first row of the resultset. Returns null if there are no results
 	 */
-	public static function queryField($query, $field, $parameters = array(), $cacheTime = 30)
+	public static function queryField($query, $field, $parameters = array(), $cacheTime = 30, $selectCheck = true)
 	{
 		// Get the result
-		$result = self::query($query, $parameters, $cacheTime);
+		$result = self::query($query, $parameters, $cacheTime, $selectCheck);
 		// Figure out if it has no results
 		if(sizeof($result) == 0)
 			return null;
