@@ -25,7 +25,7 @@ namespace z;
  */
 class Config
 {
-    private static $settings = array();
+    protected static $settings = array();
 
     /**
      * No.
