@@ -33,9 +33,12 @@ class Log
 	/*
 	   Mapped by Eggdrop to log into #esc
 	 */
-	public static function irc($text, $from = "zkillboard - ")
+	public static function irc($text)
 	{
-		global $ircLogFile;
+		global $ircLogFile, $ircLogFrom;
+
+		$from = isset($ircLogFrom) ? $ircLogFrom : "";
+
 		if (!isset($ircLogFile) || $ircLogFile == "") return;
 		$text = self::addIRCColors($text);
 		if (!is_writable($ircLogFile) && !is_writable(dirname($ircLogFile))) return;
@@ -43,9 +46,12 @@ class Log
 	}
 
 
-	public static function ircAdmin($text, $from = "zkillboard - ")
+	public static function ircAdmin($text)
 	{
-		global $ircAdminLogFile;
+		global $ircAdminLogFile, $ircLogFrom;
+
+		$from = isset($ircLogFrom) ? $ircLogFrom : "";
+
 		if (!isset($ircAdminLogFile) || $ircAdminLogFile == "") return;
 		$text = self::addIRCColors($text);
 		if (!is_writable($ircAdminLogFile) && !is_writable(dirname($ircAdminLogFile))) return; // Can't create the file
