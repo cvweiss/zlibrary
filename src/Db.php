@@ -67,7 +67,7 @@ class Db
 	 * @param bool selectCheck If true, does a strict check that the query is using a select.  Default: true
 	 * @return array Returns the full resultset as an array.
 	 */
-	public static function query($query, $parameters = array(), $cacheTime = 30, $selectCheck = true)
+	public static function query($query, $parameters = array(), $cacheTime = 0, $selectCheck = true)
 	{
 		// Sanity check
 		if(strpos($query, ";") !== false)
