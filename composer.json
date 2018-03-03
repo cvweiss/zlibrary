@@ -1,7 +1,7 @@
 {
     "name": "cvweiss/zlibrary",
     "description": "Library of classes to simplify various tasks",
-    "license": "Unlicense"
+    "license": "Unlicense",
     "authors": [
         {
             "name": "Clinton Weiss",
