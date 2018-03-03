@@ -27,7 +27,7 @@ class Log
 	{
 		global $logfile;
 		if (!file_exists($logfile) && !is_writable(dirname($logfile))) return; // Can't create the file
-		if (is_writable($logfile)) error_log(date("Ymd H:i:s") . " $text \n", 3, $logfile);
+		if (is_writable($logfile)) error_log(date("Y-m-d H:i:s") . " > $text \n", 3, $logfile);
 	}
 
 	/*
