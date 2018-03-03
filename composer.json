@@ -1,7 +1,6 @@
 {
     "name": "cvweiss/zlibrary",
     "description": "Library of classes to simplify various tasks",
-    "license": "GNU Affero General Public License",
     "authors": [
         {
             "name": "Clinton Weiss",
